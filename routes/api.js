@@ -39,16 +39,11 @@ router.get('/items', async (req, res) => {
 
 
 //TODO: 1. Validate user input
-const Joi = require('joi');
-const subscriberSchema = Joi.object({  
-    id: Joi.number(),
-    name: Joi.string().required(),
-    subscribedToChannel: Joi.string().required()
-});
 
 
 //TODO: 2. OAuth2.0 Token Validation
-const validateToken = require('../validate-tokens');
+
+
 
 /**
  * @swagger
@@ -84,13 +79,8 @@ const validateToken = require('../validate-tokens');
  *                   type: string
  */
 //TODO: 2a. Validate Token
-router.post('/items/:id', validateToken, async (req, res) => {
+router.post('/items/:id',  async (req, res) => {
     try {
-
-        //TODO: 1a. Validate request body against schema
-        const { error } = schema.validate(req.body);
-        if (error) 
-            return res.status(400).json({ message: error.details[0].message });
 
         const newSubscriber = {
             id: nextId++,
@@ -144,14 +134,10 @@ router.post('/items/:id', validateToken, async (req, res) => {
  *                 subscribedToChannel:
  *                   type: string
  */
-router.patch('/items/:id', validateToken, async (req, res) => {
+router.patch('/items/:id', async (req, res) => {
     try {
 
         //TODO: 1b. Validate request body against schema
-        const { error } = schema.validate(req.body);
-        if (error) 
-            return res.status(400).json({ message: error.details[0].message });
-
         const id = parseInt(req.params.id);
         const subscriber = subscribers.find(sub => sub.id === id);
         if (!subscriber) {
@@ -182,15 +168,10 @@ router.patch('/items/:id', validateToken, async (req, res) => {
  *       204:
  *         description: Subscriber deleted successfully
  */
-router.delete('/items/:id', validateToken, async (req, res) => {
+router.delete('/items/:id', async (req, res) => {
     try {
 
-        //TODO: 1c. Validate Id paramater
-        const id_schema = Joi.object({ id: Joi.number() });        
-        const { error } = id_schema.validate(req.params);
-        if (error) 
-            return res.status(400).json({ message: error.details[0].message });
-
+         //TODO: 1c. Validate Id paramater
         const id = parseInt(req.params.id);
         subscribers = subscribers.filter(sub => sub.id !== id);
         res.status(204).json({ message: 'Deleted Subscriber' });
@@ -198,7 +179,5 @@ router.delete('/items/:id', validateToken, async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
-
-  
 
 module.exports = router;
