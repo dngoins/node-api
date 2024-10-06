@@ -27,7 +27,7 @@ app.get('/api/items/:id', (req, res) => {
   }
 });
 
-app.post('/api/items', (req, res) => {
+app.post('/api/item', (req, res) => {
   if (!req.body.name || !req.body.description) {
     return res.status(400).json({ message: 'Name and description are required' });
   }
@@ -40,7 +40,7 @@ app.post('/api/items', (req, res) => {
   res.status(201).json(newItem);
 });
 
-app.put('/api/items/:id', (req, res) => {
+app.patch('/api/items/:id', (req, res) => {
   const item = items.find(i => i.id === parseInt(req.params.id));
   if (item) {
     if (!req.body.name || !req.body.description) {
@@ -54,7 +54,7 @@ app.put('/api/items/:id', (req, res) => {
   }
 });
 
-app.delete('/api/items/:id', (req, res) => {
+app.delete('/api/item/:id', (req, res) => {
   const itemIndex = items.findIndex(i => i.id === parseInt(req.params.id));
   if (itemIndex !== -1) {
     items.splice(itemIndex, 1);
