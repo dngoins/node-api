@@ -47,7 +47,7 @@ router.get('/items', async (req, res) => {
 
 /**
  * @swagger
- * /api/items/{id}:
+ * /api/item:
  *   post:
  *     summary: Create a new subscriber
  *     requestBody:
@@ -79,7 +79,7 @@ router.get('/items', async (req, res) => {
  *                   type: string
  */
 //TODO: 2a. Validate Token
-router.post('/items/:id',  async (req, res) => {
+router.post('/item/',  async (req, res) => {
     try {
 
         const newSubscriber = {
@@ -154,7 +154,7 @@ router.patch('/items/:id', async (req, res) => {
 
 /**
  * @swagger
- * /api/items/{id}:
+ * /api/item/{id}:
  *   delete:
  *     summary: Delete a subscriber
  *     parameters:
@@ -168,7 +168,7 @@ router.patch('/items/:id', async (req, res) => {
  *       204:
  *         description: Subscriber deleted successfully
  */
-router.delete('/items/:id', async (req, res) => {
+router.delete('/item/:id', async (req, res) => {
     try {
 
          //TODO: 1c. Validate Id paramater

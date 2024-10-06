@@ -71,14 +71,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/api/items/{id}",
+					"raw": "{{base_url}}/api/item",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"api",
-						"items",
-						"{id}"
+						"item"
 					]
 				},
 				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
