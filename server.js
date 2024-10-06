@@ -35,6 +35,11 @@ app.get('/swagger.yaml', (req, res) => {
 
 });
 
+app.get('/openapi.json', (req, res) => {
+  res.sendFile('./postman/swagger.json', { root: '.' });
+
+});
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
