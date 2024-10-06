@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.1.0
 info:
   title: Subscriber API
-  description: "List, Add, Update and Delete Subscribers"
+  description: List, Add, Update and Delete Subscribers
   termsOfService: http://swagger.io/terms/
   contact:
     name: CompTia
@@ -12,20 +12,22 @@ info:
     url: https://spdx.org/licenses/MIT.html
   version: 1.0.0
 servers:
-- url: http://localhost:3000
-  description: Development server
+  - url: http://localhost:3000
+    description: Development server
 paths:
   /api/items:
     get:
       summary: Retrieve a list of subscribers
       operationId: apiItemsGET
       responses:
-        "200":
+        '200':
           description: A list of subscribers
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200'
+                type: array
+                items:
+                  $ref: '#/components/schemas/inline_response_200'
       x-swagger-router-controller: Default
   /api/item/:
     post:
@@ -38,7 +40,7 @@ paths:
               $ref: '#/components/schemas/api_item_body'
         required: true
       responses:
-        "201":
+        '201':
           description: Subscriber created successfully
           content:
             application/json:
@@ -50,14 +52,15 @@ paths:
       summary: Update an existing subscriber
       operationId: apiItemsIdPATCH
       parameters:
-      - name: id
-        in: path
-        description: The subscriber ID
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
+        - name: id
+          in: path
+          description: The subscriber ID
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int32
       requestBody:
         content:
           application/json:
@@ -65,7 +68,7 @@ paths:
               $ref: '#/components/schemas/items_id_body'
         required: true
       responses:
-        "200":
+        '200':
           description: Subscriber updated successfully
           content:
             application/json:
@@ -77,16 +80,17 @@ paths:
       summary: Delete a subscriber
       operationId: apiItemIdDELETE
       parameters:
-      - name: id
-        in: path
-        description: The subscriber ID
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
+        - name: id
+          in: path
+          description: The subscriber ID
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int32
       responses:
-        "204":
+        '204':
           description: Subscriber deleted successfully
       x-swagger-router-controller: Default
 components:
@@ -96,29 +100,34 @@ components:
       properties:
         id:
           type: integer
+          format: int32
         name:
           type: string
         subscribedToChannel:
           type: string
-      example:
-        name: name
-        subscribedToChannel: subscribedToChannel
-        id: 0
+      examples:
+        - name: John Doe
+          subscribedToChannel: Ethereum
+          id: 0
     api_item_body:
       type: object
       properties:
         name:
           type: string
-          example: John Doe
+          examples:
+            - John Doe
         subscribedToChannel:
           type: string
-          example: BitCoin
+          examples:
+            - BitCoin
     items_id_body:
       type: object
       properties:
         name:
           type: string
-          example: Jane Doe
+          examples:
+            - Jane Doe
         subscribedToChannel:
           type: string
-          example: ShebaCoin
+          examples:
+            - ShebaCoin
