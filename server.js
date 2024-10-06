@@ -33,6 +33,8 @@ app.get('/', (req, res) => {
 app.get('/swagger.yaml', (req, res) => {
   res.sendFile('./postman/swagger.yaml', { root: '.' });
 
+});
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
