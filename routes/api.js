@@ -52,7 +52,7 @@ const validateToken = require('../validate-tokens');
 
 /**
  * @swagger
- * /api/items/{id}:
+ * /api/item:
  *   post:
  *     summary: Create a new subscriber
  *     requestBody:
@@ -84,7 +84,7 @@ const validateToken = require('../validate-tokens');
  *                   type: string
  */
 //TODO: 2a. Validate Token
-router.post('/items/:id', validateToken, async (req, res) => {
+router.post('/item/', validateToken, async (req, res) => {
     try {
 
         //TODO: 1a. Validate request body against schema
@@ -168,7 +168,7 @@ router.patch('/items/:id', validateToken, async (req, res) => {
 
 /**
  * @swagger
- * /api/items/{id}:
+ * /api/item/{id}:
  *   delete:
  *     summary: Delete a subscriber
  *     parameters:
@@ -182,7 +182,7 @@ router.patch('/items/:id', validateToken, async (req, res) => {
  *       204:
  *         description: Subscriber deleted successfully
  */
-router.delete('/items/:id', validateToken, async (req, res) => {
+router.delete('/item/:id', validateToken, async (req, res) => {
     try {
 
         //TODO: 1c. Validate Id paramater

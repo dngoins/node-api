@@ -48,7 +48,17 @@ app.use('/api', apiRoutes);
 swaggerSetup(app);
 
 app.get('/', (req, res) => {
-  res.send('Node-API-Subscribers Welcome Page');
+  res.send('Node-Subscribers-API Welcome Page');
+});
+
+app.get('/swagger.yaml', (req, res) => {
+  res.sendFile('./postman/swagger.yaml', { root: '.' });
+
+});
+
+app.get('/openapi.json', (req, res) => {
+  res.sendFile('./postman/swagger.json', { root: '.' });
+
 });
 
 app.listen(port, () => {
