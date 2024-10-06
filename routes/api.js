@@ -82,6 +82,7 @@ router.get('/items', async (req, res) => {
 router.post('/item/',  async (req, res) => {
     try {
 
+        //TODO: 1a. Validate request body against schema
         const newSubscriber = {
             id: nextId++,
             name: req.body.name,
